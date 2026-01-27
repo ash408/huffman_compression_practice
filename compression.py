@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+
+import file_handling
+
+import base64
+
+
+def main(location="test.b64"):
+	encoded_data = retrieve_data(location)
+	frequency_dict = find_frequency(encoded_data)
+
+	print(frequency_dict)
+
+def retrieve_data(location):
+	b64_data = file_handling.read_file_b64(location)
+	encoded_data = base64.b64encode(b64_data).decode('utf-8')
+	
+	return encoded_data
+
+def find_frequency(data):
+	frequency_dict = {}
+
+	for character in data:
+		if character in frequency_dict:
+			num = frequency_dict[character]
+			frequency_dict[character] = num + 1
+		
+		else:
+			frequency_dict[character] = 1
+
+	return frequency_dict
+
+
+if __name__ == "__main__":
+	main()

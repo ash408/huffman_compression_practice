@@ -21,5 +21,6 @@ def save_file_b64(data, location="test.b64"):
 	with open(location, 'wb') as file:
 		file.write(data)
 
+
 if __name__ == "__main__":
 	main()

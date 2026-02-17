@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import file_handling
+from node import Node
 
 import base64
 
@@ -29,6 +30,15 @@ def find_frequency(data):
 			frequency_dict[character] = 1
 
 	return frequency_dict
+
+def frequency_to_nodes(frequency_dict):
+	nodes = []
+
+	for character, frequency in frequency_dict.items():
+		new_node = Node(character, frequency)
+		nodes.append(new_node)
+
+	return nodes
 
 
 if __name__ == "__main__":

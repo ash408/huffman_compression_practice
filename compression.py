@@ -9,8 +9,10 @@ import base64
 def main(location="test.b64"):
 	encoded_data = retrieve_data(location)
 	frequency_dict = find_frequency(encoded_data)
+	nodes = frequency_to_nodes(frequency_dict)
 
-	print(frequency_dict)
+	for node in nodes:
+		print(node.character + ": " + str(node.frequency))
 
 def retrieve_data(location):
 	b64_data = file_handling.read_file_b64(location)

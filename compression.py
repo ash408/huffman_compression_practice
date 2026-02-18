@@ -1,19 +1,14 @@
 #!/usr/bin/python3
 
 import file_handling
-from data.tree import Tree
-from data.tree import Node
+from data.tree_builder import TreeBuilder
 
 import base64
 
 
 def main(location="test.b64"):
 	encoded_data = retrieve_data(location)
-	frequency_dict = find_frequency(encoded_data)
-	nodes = Tree.frequency_to_nodes(frequency_dict)
-
-	for node in nodes:
-		print(node.character + ": " + str(node.frequency))
+	tree = TreeBuilder(encoded_data).get_tree()
 
 def retrieve_data(location):
 	b64_data = file_handling.read_file_b64(location)

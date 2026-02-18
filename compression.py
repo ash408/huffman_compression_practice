@@ -34,17 +34,6 @@ def find_frequency(data):
 
 	return frequency_dict
 
-def frequency_to_nodes(frequency_dict):
-	nodes = []
-
-	for character in sorted(frequency_dict, key=frequency_dict.get, reverse=True):
-		frequency = frequency_dict[character]
-
-		new_node = Node(character, frequency)
-		nodes.append(new_node)
-
-	return nodes
-
 
 if __name__ == "__main__":
 	main()

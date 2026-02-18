@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 import file_handling
-from tree import Tree
-from tree import Node
+from data.tree import Tree
+from data.tree import Node
 
 import base64
 

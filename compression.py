@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 import file_handling
-from node import Node
+from tree import Tree
+from tree import Node
 
 import base64
 
@@ -43,7 +44,6 @@ def frequency_to_nodes(frequency_dict):
 		nodes.append(new_node)
 
 	return nodes
-		
 
 
 if __name__ == "__main__":

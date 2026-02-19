@@ -46,8 +46,8 @@ class TreeBuilder:
 
 	#TODO
 	def create_link(self):
-    		pass
-	#TODO
+		pass    		
+
 	def find_smallest_two(self):
 		selected_nodes = []
 
@@ -69,3 +69,4 @@ class TreeBuilder:
 					selected_nodes.append(node_heap.pop)
 				else:
 					selected_nodes.append(selected_node)
+		return selected_nodes

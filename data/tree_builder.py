@@ -8,7 +8,10 @@ class TreeBuilder:
 		frequency_dict = TreeBuilder.find_frequency(data)
 		self.node_heap = TreeBuilder.frequency_to_nodes(frequency_dict)
 
-		self.tree = None	
+		#self.tree = None
+		self.create_link()
+		print()
+		self.create_link()
 
 	#TODO finish required methods first
 	def get_tree(self):
@@ -43,9 +46,39 @@ class TreeBuilder:
 
 		return frequency_dict
 
+	#TODO remove this
+	def view_node(self, node):
+		print(str(node.character) + ": " + str(node.frequency))
+
+		if node.left is not None:
+			print("Left - " + str(node.left.character) + ": " + str(node.left.frequency))
+		if node.right is not None:
+			print("Right - " + str(node.right.character) + ": " + str(node.right.frequency))
+
 	#TODO
 	def create_link(self):
-		pass	
+		nodes = self.find_smallest_two()
+		node1, node2 = nodes[0], nodes[1]
+
+		self.view_node(node1)
+		self.view_node(node2)
+		print()
+
+		internal_node = Node(None, node1.frequency + node2.frequency)
+
+		if node1.frequency < node2.frequency:
+			internal_node.left = node1
+			internal_node.right = node2
+		else:
+			internal_node.left = node2
+			internal_node.right = node1
+
+		self.view_node(internal_node)
+
+		#self.view_node(internal_node)
+
+		self.root_nodes.append(internal_node)
+	
 	#TODO test with root nodes
 	def find_smallest_two(self):
 		selected_nodes = []
@@ -69,12 +102,12 @@ class TreeBuilder:
 						selected_node = current_node
 
 					else:
-						remaining_roots.append(selected_node)
+						remaining_roots.append(current_node)
 
 				self.root_nodes = remaining_roots				
  
 				if selected_node is None:
-					selected_nodes.append(node_heap.pop())
+					selected_nodes.append(self.node_heap.pop())
 				else:
 					selected_nodes.append(selected_node)
 		return selected_nodes

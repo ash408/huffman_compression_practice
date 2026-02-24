@@ -44,6 +44,31 @@ class TreeBuilder:
 		print(str(frequency_dict) + "\n\n")
 		return frequency_dict
 
+	def traverse_one(self):
+		if len(node_heap > 0):
+			current_node = node_heap[-1]
+
+			if current_node.binary is None:
+				current_node.binary = "0"
+
+			if current_node.left is not None:
+				current_node.left.binary = "0"
+				node_heap.append(current_node.left)
+
+			elif current_node.right is not None:
+				current_node.right.binary = "1"
+				node_heap.append(current_node.right)
+
+			else:
+				node_heap.pop()
+				parent = node_heap[-1]
+
+				if current_node.binary == "0":
+					parent.left = None
+				else:
+					parent.right = None
+
+
 	def view_node(self, node):
 		if node is None:
 			print("NO NODE PROVIDED")

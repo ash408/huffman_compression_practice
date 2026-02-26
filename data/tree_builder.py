@@ -48,15 +48,15 @@ class TreeBuilder:
 		if len(node_heap > 0):
 			current_node = node_heap[-1]
 
-			if current_node.binary is None:
+			if current_node.parent is None:
 				current_node.binary = "0"
 
-			if current_node.left is not None:
-				current_node.left.binary = "0"
+			elif current_node.left is not None:
+				current_node.left.binary = current_node.binary + "0"
 				node_heap.append(current_node.left)
 
 			elif current_node.right is not None:
-				current_node.right.binary = "1"
+				current_node.right.binary = current_node.binary +  "1"
 				node_heap.append(current_node.right)
 
 			else:
@@ -67,6 +67,8 @@ class TreeBuilder:
 					parent.left = None
 				else:
 					parent.right = None
+
+				return current_node
 
 
 	def view_node(self, node):

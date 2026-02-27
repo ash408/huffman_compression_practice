@@ -20,6 +20,19 @@ class TreeBuilder:
 		self.view_tree(self.tree.root)
 		return self.tree
 
+	def get_codes(self):
+		root = self.tree.root
+		self.node_heap = [root]
+		self.codes = {}
+
+		while len(self.node_heap) > 0:
+			node = self.traverse_one()
+
+			if node is not None:
+				self.codes[node.character] = node.binary
+
+		return self.codes
+
 	def frequency_to_nodes(frequency_dict):
 		nodes = []
 
@@ -45,11 +58,16 @@ class TreeBuilder:
 		return frequency_dict
 
 	def traverse_one(self):
+		node_heap = self.node_heap
+
 		if len(node_heap > 0):
 			current_node = node_heap[-1]
 
-			if current_node.parent is None:
+			if current_node.parent is None and current_node.binary is None:
 				current_node.binary = "0"
+
+			elif current_node.parent is None:
+				node_heap.pop()
 
 			elif current_node.left is not None:
 				current_node.left.binary = current_node.binary + "0"
@@ -69,6 +87,7 @@ class TreeBuilder:
 					parent.right = None
 
 				return current_node
+		return None
 
 
 	def view_node(self, node):

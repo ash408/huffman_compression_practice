@@ -17,7 +17,6 @@ class TreeBuilder:
 				self.create_link()
 			self.tree = Tree(self.root_nodes[0])
 		
-		self.view_tree(self.tree.root)
 		return self.tree
 
 	def get_codes(self):
@@ -59,17 +58,19 @@ class TreeBuilder:
 
 	def traverse_one(self):
 		node_heap = self.node_heap
+		parent = None if len(node_heap) < 2 else node_heap[-2] 
 
 		if len(node_heap) > 0:
 			current_node = node_heap[-1]
 
-			if current_node.parent is None and current_node.binary is None:
+			if parent is None and current_node.binary is None:
 				current_node.binary = "0"
 
-			elif current_node.parent is None:
+			elif parent is None:
 				node_heap.pop()
+				return None
 
-			elif current_node.left is not None:
+			if current_node.left is not None:
 				current_node.left.binary = current_node.binary + "0"
 				node_heap.append(current_node.left)
 
@@ -79,9 +80,8 @@ class TreeBuilder:
 
 			else:
 				node_heap.pop()
-				parent = node_heap[-1]
 
-				if current_node.binary == "0":
+				if current_node.binary[-1].strip() == "0":
 					parent.left = None
 				else:
 					parent.right = None

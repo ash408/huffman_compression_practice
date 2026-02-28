@@ -21,7 +21,7 @@ class TreeBuilder:
 		return self.tree
 
 	def get_codes(self):
-		root = self.tree.root
+		root = self.get_tree().root
 		self.node_heap = [root]
 		self.codes = {}
 
@@ -60,7 +60,7 @@ class TreeBuilder:
 	def traverse_one(self):
 		node_heap = self.node_heap
 
-		if len(node_heap > 0):
+		if len(node_heap) > 0:
 			current_node = node_heap[-1]
 
 			if current_node.parent is None and current_node.binary is None:

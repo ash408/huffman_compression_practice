@@ -58,7 +58,7 @@ class TreeBuilder:
 
 	def traverse_one(self):
 		node_heap = self.node_heap
-		parent = None if len(node_heap) < 2 else node_heap[-2] 
+		parent = None if len(node_heap) < 2 else node_heap[-2]
 
 		if len(node_heap) > 0:
 			current_node = node_heap[-1]
@@ -85,8 +85,11 @@ class TreeBuilder:
 					parent.left = None
 				else:
 					parent.right = None
-
-				return current_node
+				
+				if current_node.character is not None:
+					return current_node
+				else:
+					return None
 		return None
 
 

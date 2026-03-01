@@ -8,7 +8,8 @@ import base64
 
 def main(location="test.b64"):
 	encoded_data = retrieve_data(location)
-	tree = TreeBuilder(encoded_data).get_tree()
+	codes = TreeBuilder(encoded_data).get_codes()
+	print(codes)
 
 def retrieve_data(location):
 	b64_data = file_handling.read_file_b64(location)

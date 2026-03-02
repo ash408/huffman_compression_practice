@@ -66,7 +66,7 @@ class TreeBuilder:
 			if parent is None and current_node.binary is None:
 				current_node.binary = "0"
 
-			elif parent is None:
+			elif parent is None and current_node.left is None and current_node.right is None:
 				node_heap.pop()
 				return None
 

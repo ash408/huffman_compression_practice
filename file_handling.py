@@ -1,5 +1,6 @@
 
 import base64
+import json
 
 
 def main():
@@ -21,6 +22,11 @@ def save_file_b64(data, location="test.b64"):
 	with open(location, 'wb') as file:
 		file.write(data)
 
+def save_codes(codes, location="test_codes.json"):
+
+	with open(location, 'w+') as file:
+		data = json.dumps(codes, indent=4)
+		file.write(data)
 
 if __name__ == "__main__":
 	main()

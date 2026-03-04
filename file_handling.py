@@ -28,5 +28,10 @@ def save_codes(codes, location="test_codes.json"):
 		data = json.dumps(codes, indent=4)
 		file.write(data)
 
+def save_compressed(data, location="compressed_data.bin"):
+
+	with open(location, 'wb') as file:
+		file.write(data.to_bytes((data.bit_length()+7)//8, 'big'))
+
 if __name__ == "__main__":
 	main()

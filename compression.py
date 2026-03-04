@@ -12,6 +12,7 @@ def main(location="test.b64"):
 	file_handling.save_codes(codes)
 
 	binary_data = compress_data(encoded_data, codes)
+	file_handling.save_compressed(binary_data)
 
 def retrieve_data(location):
 	b64_data = file_handling.read_file_b64(location)

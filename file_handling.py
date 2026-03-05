@@ -33,5 +33,14 @@ def save_compressed(data, location="compressed_data.bin"):
 	with open(location, 'wb') as file:
 		file.write(data.to_bytes((data.bit_length()+7)//8, 'big'))
 
+def read_compressed(location="compressed_data.bin"):
+	data = None
+
+	with open(location, 'rb') as file:
+		byte_data = file.read()
+		data = bin(int.from_bytes(byte_data, 'big'))
+
+	return data
+
 if __name__ == "__main__":
 	main()

@@ -14,6 +14,9 @@ def main(location="test.b64"):
 	binary_data = compress_data(encoded_data, codes)
 	file_handling.save_compressed(binary_data)
 
+	new_binary = file_handling.read_compressed()
+	print("\n" + new_binary)
+
 def retrieve_data(location):
 	b64_data = file_handling.read_file_b64(location)
 	encoded_data = base64.b64encode(b64_data).decode('utf-8')

@@ -28,6 +28,14 @@ def save_codes(codes, location="test_codes.json"):
 		data = json.dumps(codes, indent=4)
 		file.write(data)
 
+def read_codes(location="test_codes.json"):
+	json_data = None
+
+	with open(location, 'r') as file:
+		json_data = json.load(file)
+
+	return json_data
+
 def save_compressed(data, location="compressed_data.bin"):
 
 	with open(location, 'wb') as file:

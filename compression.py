@@ -32,6 +32,20 @@ def compress_data(encoded_data, codes):
 	print(binary_data)
 	return int(binary_data, base=2)
 
+def find_chunk(compressed_data, codes):
+	compressed_data = str(compressed_data)
+	b64_character = ""
+	current_binary = ""
+
+	for digit in compressed_data:
+		current_binary = current_binary + digit
+
+		for character, binary in codes.items():
+			if current_binary == binary:
+				b64_character = character
+
+				return [b64_character, current_binary]
+
 
 if __name__ == "__main__":
 	main()

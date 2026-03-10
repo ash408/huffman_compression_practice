@@ -3,6 +3,7 @@
 import file_handling
 from data.tree_builder import TreeBuilder
 
+import sys
 import base64
 
 
@@ -33,7 +34,6 @@ def compress_data(encoded_data, codes):
 	return int(binary_data, base=2)
 
 def find_chunk(compressed_data, codes):
-	compressed_data = str(compressed_data)
 	b64_character = ""
 	current_binary = ""
 
@@ -46,6 +46,25 @@ def find_chunk(compressed_data, codes):
 
 				return [b64_character, current_binary]
 
+	return None
+
+def decompress_data(compressed_data, codes):
+	compressed_data = str(compressed_data)
+	b64_data = ""
+
+	while len(compressed_data) > 0:
+		result = find_chunk(compressed_data, codes)
+
+		if result is not None:
+			b64_character = result[0]
+			chunk = resut[1]
+
+			b64_data = b64_data + b64_character
+			compressed_data = compressed_data[len(chunk):]
+
+		else:
+			print("DECOMPRESSION ERROR: No matching binary sequency found")
+			sys.exit(1)
 
 if __name__ == "__main__":
 	main()
